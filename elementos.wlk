@@ -29,3 +29,16 @@ class Mascota {
     method esBueno() = salud > 250
 }
 
+class Barrio {
+    const elementos = [] // dice que tiene elementos varios
+    // porque dice de 1 elemento
+    method saberSiEsBueno(unElemento) = unElemento.esBueno() 
+    
+    method esCopado() = self.cantEleementosBuenos() > self.cantElementosMalos()
+    // postergo los metodos auxiliares porque no se todavia cuando los elementos
+    // son buenos o no
+
+    method cantEleementosBuenos() = elementos.count({e => e.esBueno()})
+    method cantElementosMalos() = elementos.count({e => !e.esBueno()}) // lo mismo pero negado
+}
+
