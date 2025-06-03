@@ -1,6 +1,7 @@
 class Plaga{
     var poblacion
-    method trasmiteEnfermedades() = poblacion >= 10
+    method trasmiteEnfermedades() = poblacion >= 10 && self.condicionAdiccional()
+    method condicionAdiccional() = true
 }
 // aca le digo vas a heredad de la clase plaga todos sus atributos
 class Cucarachas inherits Plaga{
@@ -8,8 +9,9 @@ class Cucarachas inherits Plaga{
     // para que herede de plaga utilizamos la palaga
     var pesoPromedioBicho
     method nivelDeDaño() = poblacion * 0.5
-    override method trasmiteEnfermedades() =  super() && pesoPromedioBicho >= 10
+    //override method trasmiteEnfermedades() =  super() && pesoPromedioBicho >= 10
     // override = lo estamos subescribiendo
+    override method condicionAdiccional() = pesoPromedioBicho >= 10
 }
 class Pulgas inherits Plaga{
     method nivelDeDaño() = poblacion * 0.2

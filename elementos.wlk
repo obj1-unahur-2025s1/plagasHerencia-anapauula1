@@ -1,10 +1,16 @@
 // elementos que pueden ser atacados
+import plagas.*
+
 class Hogar{
     // clase porque puede haber varias
     var mugre
     var confort
     // >  <
     method esBueno() = confort  >= mugre /2
+
+    method recibirDañoPlaga(unaPlaga){
+        mugre += unaPlaga.daño()
+    }
 }
 class Huerta {
     var produccion 
@@ -14,6 +20,9 @@ class Huerta {
     // lo tengo que comparar con un nivel fijp que tendran
     // todas las huertas y el mismo NO se lo puedo poner en una clase
     // porque las huertas tendran la produccion distinta osea el valor
+    method recibirDañoPlaga(unaPlaga){
+        if(unaPlaga.trasmiteEnfermedades()) {produccion - 10} else {produccion - unaPlaga.daño() * 0.10}
+    }
 }
 object nivelMinimoProduccion {
     // en este caso dice que es un valor fijo pero no dice
@@ -27,8 +36,10 @@ object nivelMinimoProduccion {
 class Mascota {
     var salud
     method esBueno() = salud > 250
+    method recibirDañoPlaga(unaPlaga){
+        if(unaPlaga.trasmiteEnfermedades()) {salud = salud - unaPlaga.daño()} 
+    }
 }
-
 class Barrio {
     const elementos = [] // dice que tiene elementos varios
     // porque dice de 1 elemento
@@ -40,4 +51,5 @@ class Barrio {
 
     method cantEleementosBuenos() = elementos.count({e => e.esBueno()})
     method cantElementosMalos() = elementos.count({e => !e.esBueno()}) // lo mismo pero negado
+    
 }
