@@ -41,4 +41,3 @@ class Barrio {
     method cantEleementosBuenos() = elementos.count({e => e.esBueno()})
     method cantElementosMalos() = elementos.count({e => !e.esBueno()}) // lo mismo pero negado
 }
-
